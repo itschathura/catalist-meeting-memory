@@ -227,3 +227,5 @@ Data/
 storage/*.db
 storage/*.sqlite
 .env
+.pytest_cache/
+
