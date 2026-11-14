@@ -218,3 +218,12 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+
+
+# Project specific data and storage
+data/
+Data/
+storage/*.db
+storage/*.sqlite
+.env
