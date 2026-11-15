@@ -1,0 +1,134 @@
+[
+  {
+    "question_id": "MQ01",
+    "team": "TS3012",
+    "question": "What energy source did Team TS3012's Industrial Designer initially favor, and what did the team ultimately settle on in Meeting C?",
+    "ground_truth_answer": "Speaker C (Industrial Designer) initially favored a kinetic energy provision, but the team settled on regular batteries because remotes remain stationary 99 percent of the time.",
+    "citations": [
+      {
+        "meeting_id": "TS3012c",
+        "quote": "My personal uh fav favourite is the kinetic provision"
+      },
+      {
+        "meeting_id": "TS3012c",
+        "quote": "Okay, will just take regular batteries."
+      }
+    ]
+  },
+  {
+    "question_id": "MQ02",
+    "team": "TS3012",
+    "question": "Team TS3012 agreed on a casing material in Meeting C, but what alternative material was proposed to replace it in Meeting D?",
+    "ground_truth_answer": "In Meeting C the team chose rubber, but in Meeting D Speaker A proposed dropping rubber in favor of plastic.",
+    "citations": [
+      {
+        "meeting_id": "TS3012c",
+        "quote": "Okay, and if we use rubber, I already mentioned that, we can only use rubber buttons."
+      },
+      {
+        "meeting_id": "TS3012d",
+        "quote": "Mm-hmm. Or say let's lose rubber, take plastic."
+      }
+    ]
+  },
+  {
+    "question_id": "MQ03",
+    "team": "IS1001",
+    "question": "Why did Team IS1001 decide against incorporating speech recognition into their remote control?",
+    "ground_truth_answer": "Team IS1001 ruled out speech recognition because they concluded it would delay the development process too much.",
+    "citations": [
+      {
+        "meeting_id": "IS1001b",
+        "quote": "And so no speech as well because it w it would delay too much the deve"
+      }
+    ]
+  },
+  {
+    "question_id": "MQ04",
+    "team": "IS1004",
+    "question": "What material shift did Team IS1004 agree on during their detailed design meeting (Meeting D)?",
+    "ground_truth_answer": "In Meeting D, Team IS1004 decided to substitute plastic in place of rubber for their remote design.",
+    "citations": [
+      {
+        "meeting_id": "IS1004d",
+        "quote": "instead of rubber, let it be plastic."
+      }
+    ]
+  },
+  {
+    "question_id": "MQ05",
+    "team": "ES2005",
+    "question": "What aesthetic theme did Team ES2005 debate in Meeting C, and what objection was raised regarding a banana shape?",
+    "ground_truth_answer": "Team ES2005 explored fruit and vegetable styling, but Speaker C cautioned that a spongy banana remote might seem childish.",
+    "citations": [
+      {
+        "meeting_id": "ES2005c",
+        "quote": "does it does seem a bit uh again childish maybe."
+      },
+      {
+        "meeting_id": "ES2005c",
+        "quote": "I think maybe just draw on the kind of fruit and vegetable shape."
+      }
+    ]
+  },
+  {
+    "question_id": "MQ06",
+    "team": "TS3005",
+    "question": "What casing material did Team TS3005 consider in Meeting C, and how did they describe its tactile feel?",
+    "ground_truth_answer": "Team TS3005 considered rubber for their remote casing, debating whether it should be hard rubber or softer rubber.",
+    "citations": [
+      {
+        "meeting_id": "TS3005c",
+        "quote": "It's rubber. Yeah but but a hard rubber like this? Or softer rubber or Yeah."
+      }
+    ]
+  },
+  {
+    "question_id": "MQ07",
+    "team": "TS3008",
+    "question": "What potential challenge did Team TS3008 discuss in Meeting D regarding relying solely on kinetic power?",
+    "ground_truth_answer": "Team TS3008 noted that if they used only kinetic energy, the user would continuously have to move or shake the remote to keep it powered.",
+    "citations": [
+      {
+        "meeting_id": "TS3008d",
+        "quote": "Yeah, but only kinetic, then you gotta"
+      }
+    ]
+  },
+  {
+    "question_id": "MQ08",
+    "team": "IS1006",
+    "question": "What dual-material concept did Team IS1006 explore during conceptual design in Meeting C?",
+    "ground_truth_answer": "Team IS1006 explored having two different assembly sections, combining a sponge or rubber part with plastic.",
+    "citations": [
+      {
+        "meeting_id": "IS1006c",
+        "quote": "Maybe we can have two different assembly also like one spongy"
+      }
+    ]
+  },
+  {
+    "question_id": "MQ09",
+    "team": "TS3005",
+    "question": "What did Team TS3005 conclude in Meeting D regarding their battery requirements?",
+    "ground_truth_answer": "Team TS3005 reviewed their energy needs in Meeting D and confirmed they needed a standard battery setup.",
+    "citations": [
+      {
+        "meeting_id": "TS3005d",
+        "quote": "We've got a battery, one or t two batteries, or not? nee one battery"
+      }
+    ]
+  },
+  {
+    "question_id": "MQ10",
+    "team": "IS1001",
+    "question": "What did Team IS1001 confirm regarding their power source choice in Meeting C?",
+    "ground_truth_answer": "In Meeting C, Team IS1001 clarified that they would proceed with using a standard battery.",
+    "citations": [
+      {
+        "meeting_id": "IS1001c",
+        "quote": "So we will just use a a standard battery?"
+      }
+    ]
+  }
+]
