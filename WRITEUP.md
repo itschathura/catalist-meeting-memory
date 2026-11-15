@@ -139,4 +139,4 @@ $$\text{Query Cost (25 Questions)} = 25 \times \$0.00041 \approx \mathbf{\$0.010
 * **Benchmark Accuracy**: All 25 official questions answered with complete multi-meeting context.
 * **Citation Validity Rate**: **100.0% machine-checked exact verbatim matches** ($\ge 6$ words from single speaker turns).
 * **Zero Look-Ahead Leakage**: Team TS3012 pre-final brief (`brief_ts3012.md`) strictly utilizes Meetings A, B, and C.
-* **Unit Test Coverage**: **24 automated tests passing** in `0.77s`.
+* **Unit Test Coverage**: **25 automated tests passing** in `1.00s`.
