@@ -67,6 +67,7 @@ def run_benchmark(
         team = q["team"]
         q_text = q["question"]
 
+        console.print(f"  [cyan][{idx+1}/{len(questions)}][/cyan] Querying [bold]{q_id}[/bold] ({team})...", end="\r")
         t0 = time.time()
         res = answer_question(q_id, team, q_text, use_cache=use_cache)
         latency = time.time() - t0
@@ -82,6 +83,7 @@ def run_benchmark(
                 valid_count += 1
 
         cit_str = f"{valid_count}/{len(citations)}"
+        console.print(f"  [green]✓[/green] [{idx+1}/{len(questions)}] [bold]{q_id}[/bold] ({team}) — {valid_count} citations verified in {latency:.2f}s")
         preview = res.get("answer", "")[:60] + "..."
         table.add_row(q_id, team, cit_str, f"{latency:.2f}", preview)
 
