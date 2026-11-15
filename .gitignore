@@ -224,8 +224,7 @@ __marimo__/
 # Project specific data and storage
 data/
 Data/
-storage/*.db
-storage/*.sqlite
+storage/
 .env
 .pytest_cache/
 

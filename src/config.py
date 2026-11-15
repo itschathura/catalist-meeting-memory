@@ -20,11 +20,13 @@ load_dotenv(PROJECT_ROOT / ".env")
 DATA_DIR = PROJECT_ROOT / "data"
 TRANSCRIPTS_DIR = DATA_DIR / "transcripts"
 STORAGE_DIR = PROJECT_ROOT / "storage"
+CACHE_DIR = STORAGE_DIR / "llm_cache"
 EVAL_DIR = PROJECT_ROOT / "eval"
 
 # Key Files
 QUESTIONS_FILE = DATA_DIR / "questions.json"
 DB_PATH = STORAGE_DIR / "meeting_memory.db"
+METRICS_FILE = STORAGE_DIR / "llm_metrics.json"
 ANSWERS_OUTPUT_FILE = PROJECT_ROOT / "answers.json"
 BRIEF_OUTPUT_FILE = PROJECT_ROOT / "brief_ts3012.md"
 FAILURES_OUTPUT_FILE = PROJECT_ROOT / "failures.md"
@@ -35,7 +37,7 @@ MY_QUESTIONS_FILE = EVAL_DIR / "my_questions.json"
 
 # API & LLM Settings
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "").strip()
-GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-2.5-flash").strip()
+GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-3.5-flash-lite").strip()
 
 # Verification & Task Constraints
 MIN_CITATION_WORDS = int(os.getenv("MIN_CITATION_WORDS", "6"))
@@ -49,6 +51,7 @@ BENCHMARK_FINAL_SESSION = "d"  # Final meeting to exclude from pre-final brief
 def ensure_dirs() -> None:
     """Ensure runtime output and storage directories exist."""
     STORAGE_DIR.mkdir(parents=True, exist_ok=True)
+    CACHE_DIR.mkdir(parents=True, exist_ok=True)
     EVAL_DIR.mkdir(parents=True, exist_ok=True)
 
 
