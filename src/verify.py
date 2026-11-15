@@ -64,8 +64,7 @@ def find_exact_quote_in_turn(
     db_path: Optional[Path] = None,
 ) -> Optional[Dict[str, Any]]:
     """
-    Check if quote exists as an exact verbatim substring within any single turn
-    of the specified meeting in SQLite.
+    substring check in SQLITE.
     """
     conn = get_db_connection(db_path)
     cursor = conn.cursor()
