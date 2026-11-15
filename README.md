@@ -1,6 +1,6 @@
 # Catalist Meeting Memory
 
-[![Tests](https://img.shields.io/badge/pytest-24%20passed-brightgreen.svg)]()
+[![Tests](https://img.shields.io/badge/pytest-25%20passed-brightgreen.svg)]()
 [![Citations](https://img.shields.io/badge/citation%20validity-100%25-blue.svg)]()
 [![Model](https://img.shields.io/badge/Gemini-3.5%20Flash%20Lite-orange.svg)]()
 [![Scale](https://img.shields.io/badge/Corpus-138%20meetings%20%7C%2048k%20turns-purple.svg)]()
@@ -52,7 +52,7 @@ Run evaluation on self-generated benchmark questions or official questions:
 # Evaluate 10 self-generated ground truth questions
 python -m eval.run_eval --my-questions
 
-# Run full project test suite (24 tests)
+# Run full project test suite (25 tests)
 pytest tests/ -v
 ```
 
@@ -78,4 +78,4 @@ pytest tests/ -v
 | **Corpus Ingestion Time** | **0.871s** (48k turns) | **0.871s** (48k turns) |
 | **Average Query Latency** | **~2.8s** | **2.28s** |
 | **Total Token Cost** | **<$0.015 USD** | **$0.0041 USD** |
-| **Automated Unit Tests** | **24 / 24 PASSED (0.77s)** | **24 / 24 PASSED (0.77s)** |
+| **Automated Unit Tests** | **25 / 25 PASSED (1.00s)** | **25 / 25 PASSED (1.00s)** |
