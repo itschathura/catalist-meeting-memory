@@ -266,6 +266,7 @@ def validate_answers_file(answers_file_path: Path) -> Dict[str, Any]:
     Audit an entire answers.json submission file for citation compliance.
     Returns comprehensive metrics (total questions, citation validity rate, errors).
     """
+    answers_file_path = Path(answers_file_path)
     if not answers_file_path.exists():
         raise FileNotFoundError(f"Answers file not found: {answers_file_path}")
 

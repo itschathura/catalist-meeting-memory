@@ -13,8 +13,12 @@ from __future__ import annotations
 import json
 import time
 import argparse
+import sys
 from pathlib import Path
 from typing import Dict, List, Any
+
+# Ensure project root is in sys.path
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from rich.console import Console
 from rich.table import Table

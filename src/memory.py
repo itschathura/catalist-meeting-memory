@@ -112,52 +112,84 @@ class TeamTemporalTimeline:
 # ==============================================
 # Speaker & Role Resolution
 
+# AMI Core Roles
+AMI_ROLES = ["Project Manager", "Industrial Designer", "User Interface Designer", "Marketing Expert"]
+
+FIRST_PERSON_INTRO_PATTERNS = [
+    (re.compile(r"\b(i am|i'm|i'll be( your)?|my name('s| is))\b.*?\bproject manager\b", re.I), "Project Manager"),
+    (re.compile(r"\b(i am|i'm|i'll be( your)?|my name('s| is)|presented by me, the)\b.*?\bindustrial designer\b", re.I), "Industrial Designer"),
+    (re.compile(r"\b(i am|i'm|i'll be( your)?|my name('s| is))\b.*?\b(user )?interface designer\b", re.I), "User Interface Designer"),
+    (re.compile(r"\b(i am|i'm|i'll be( your)?|my name('s| is))\b.*?\bmarketing (expert)?\b", re.I), "Marketing Expert"),
+]
+
+TOPIC_PRESENTATION_PATTERNS = [
+    (re.compile(r"\b(working design|components?|technical functions?|hardware|circuit|infrared bulb|chip)\b", re.I), "Industrial Designer", 3),
+    (re.compile(r"\b(user interface|interface design|g_u_i_|button layout|display screen|menu navigation)\b", re.I), "User Interface Designer", 3),
+    (re.compile(r"\b(market research|target group|user requirements|market trends?|trend-watching|demographics)\b", re.I), "Marketing Expert", 3),
+    (re.compile(r"\b(agenda for today|project plan|welcome (at|to) the kick-?off|wrap up the meeting)\b", re.I), "Project Manager", 5),
+]
+
+
 def get_team_roles(team: str, db_path: Optional[Any] = None) -> Dict[str, str]:
     """
-    Extract speaker roles (Project Manager, User Interface, Industrial Designer, Marketing)
-    from kick-off meeting transcripts (Session A or B).
+    Extract speaker roles (Project Manager, User Interface Designer, Industrial Designer, Marketing Expert)
+    by scanning kick-off introductions (Session A) and presentation openings across Sessions A, B, and C.
+    Employs deductive assignment so all 4 speakers receive distinct functional roles.
     """
     team_clean = team.upper().strip()
-    roles: Dict[str, str] = {
-        "Speaker A": "",
-        "Speaker B": "",
-        "Speaker C": "",
-        "Speaker D": "",
-    }
+    speakers = ["Speaker A", "Speaker B", "Speaker C", "Speaker D"]
+    scores = {spk: {r: 0 for r in AMI_ROLES} for spk in speakers}
 
-    # Fetch first 100 turns of session A
     conn = get_db_connection(db_path)
     cursor = conn.cursor()
     rows = cursor.execute("""
-        SELECT speaker, text
+        SELECT session, turn_id, speaker, text
         FROM turns
-        WHERE team = ? AND session = 'a'
-        ORDER BY turn_id ASC
-        LIMIT 100
+        WHERE team = ? AND session IN ('a', 'b', 'c')
+        ORDER BY session_seq ASC, turn_id ASC
     """, (team_clean,)).fetchall()
 
-    if not rows:
-        # Fallback to session B if session A does not exist
-        rows = cursor.execute("""
-            SELECT speaker, text
-            FROM turns
-            WHERE team = ? AND session = 'b'
-            ORDER BY turn_id ASC
-            LIMIT 100
-        """, (team_clean,)).fetchall()
-
     for r in rows:
-        speaker = r["speaker"]
-        text = r["text"]
-        if speaker not in roles or roles[speaker]:
+        spk = r["speaker"]
+        if spk not in scores:
             continue
+        text = r["text"]
 
-        for role_name, pat in ROLE_PATTERNS.items():
+        # High-weight first-person introductions in early kick-off turns
+        if r["session"] == 'a' and r["turn_id"] <= 60:
+            for pat, role in FIRST_PERSON_INTRO_PATTERNS:
+                if pat.search(text):
+                    scores[spk][role] += 100
+
+        # Topic and presentation opening cues
+        for pat, role, weight in TOPIC_PRESENTATION_PATTERNS:
             if pat.search(text):
-                roles[speaker] = role_name
-                break
+                w = weight * 2 if r["turn_id"] <= 120 else weight
+                scores[spk][role] += w
 
-    return roles
+    # Greedy bipartite matching
+    assigned_roles: Dict[str, str] = {spk: "" for spk in speakers}
+    rem_speakers = set(speakers)
+    rem_roles = set(AMI_ROLES)
+
+    candidates = []
+    for spk in speakers:
+        for role in AMI_ROLES:
+            candidates.append((scores[spk][role], spk, role))
+    candidates.sort(reverse=True)
+
+    for score, spk, role in candidates:
+        if score > 0 and spk in rem_speakers and role in rem_roles:
+            assigned_roles[spk] = role
+            rem_speakers.remove(spk)
+            rem_roles.remove(role)
+
+    # Deductive completion if 3 assigned and 1 remains
+    if len(rem_speakers) == 1 and len(rem_roles) == 1:
+        s = rem_speakers.pop()
+        assigned_roles[s] = rem_roles.pop()
+
+    return assigned_roles
 
 
 # =====================================================================

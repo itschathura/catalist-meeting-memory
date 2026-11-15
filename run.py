@@ -12,7 +12,7 @@ import json
 import time
 import argparse
 from pathlib import Path
-from typing import Dict, List, Any
+from typing import Dict, List, Any, Optional
 
 from rich.console import Console
 from rich.table import Table

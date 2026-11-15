@@ -15,7 +15,15 @@ def test_get_team_roles():
     assert roles["Speaker A"] == "Project Manager"
     assert roles["Speaker B"] == "User Interface Designer"
     assert roles["Speaker C"] == "Industrial Designer"
-    assert roles["Speaker D"] == "Marketing"
+    assert "Marketing" in roles["Speaker D"]
+
+
+def test_get_team_roles_es2004():
+    roles = get_team_roles("ES2004")
+    assert roles["Speaker B"] == "Project Manager"
+    assert roles["Speaker C"] == "Industrial Designer"
+    assert "Marketing" in roles["Speaker D"]
+    assert roles["Speaker A"] == "User Interface Designer"
 
 
 def test_build_temporal_timeline_chronological():

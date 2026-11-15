@@ -194,7 +194,7 @@ class LLMClient:
                         url,
                         headers={"Content-Type": "application/json"},
                         json=request_body,
-                        timeout=30,
+                        timeout=45,
                     )
 
                     if response.status_code == 200:
