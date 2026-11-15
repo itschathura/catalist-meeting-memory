@@ -221,10 +221,9 @@ __marimo__/
 
 
 
-# Project specific data and storage
-data/
-Data/
+# Project runtime storage & secrets
 storage/
 .env
+.env.local
 .pytest_cache/
 
